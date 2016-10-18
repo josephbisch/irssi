@@ -127,10 +127,6 @@ static SERVER_CONNECT_REC *get_server_connect(const char *data, int *plus_addr,
 	if (g_hash_table_lookup(optlist, "noautosendcmd") != NULL)
 		conn->no_autosendcmd = TRUE;
 
-	if (g_hash_table_lookup(optlist, "noproxy") != NULL)
-                g_free_and_null(conn->proxy);
-
-
 	*rawlog_file = g_strdup(g_hash_table_lookup(optlist, "rawlog"));
 
         host = g_hash_table_lookup(optlist, "host");
@@ -149,7 +145,7 @@ static SERVER_CONNECT_REC *get_server_connect(const char *data, int *plus_addr,
                    [-ssl_verify] [-ssl_cafile <cafile>] [-ssl_capath <capath>]
                    [-ssl_ciphers <list>]
                    [-!] [-noautosendcmd]
-		   [-noproxy] [-network <network>] [-host <hostname>]
+		   [-network <network>] [-host <hostname>]
 		   [-rawlog <file>]
 		   <address>|<chatnet> [<port> [<password> [<nick>]]] */
 /* NOTE: -network replaces the old -ircnet flag. */
@@ -256,7 +252,7 @@ static void sig_default_command_server(const char *data, SERVER_REC *server,
                   [-ssl_verify] [-ssl_cafile <cafile>] [-ssl_capath <capath>]
                   [-ssl_ciphers <list>]
                   [-!] [-noautosendcmd]
-		  [-noproxy] [-network <network>] [-host <hostname>]
+		  [-network <network>] [-host <hostname>]
 		  [-rawlog <file>]
                   [+]<address>|<chatnet> [<port> [<password> [<nick>]]] */
 /* NOTE: -network replaces the old -ircnet flag. */
@@ -494,7 +490,7 @@ void chat_commands_init(void)
 	signal_add("default command server", (SIGNAL_FUNC) sig_default_command_server);
 	signal_add("server sendmsg", (SIGNAL_FUNC) sig_server_sendmsg);
 
-	command_set_options("connect", "4 6 !! -network ssl +ssl_cert +ssl_pkey +ssl_pass ssl_verify +ssl_cafile +ssl_capath +ssl_ciphers +host noproxy -rawlog noautosendcmd");
+	command_set_options("connect", "4 6 !! -network ssl +ssl_cert +ssl_pkey +ssl_pass ssl_verify +ssl_cafile +ssl_capath +ssl_ciphers +host -rawlog noautosendcmd");
 	command_set_options("msg", "channel nick");
 }
 

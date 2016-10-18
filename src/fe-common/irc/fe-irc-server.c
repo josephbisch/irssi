@@ -106,8 +106,6 @@ static void cmd_server_list(const char *data)
 			g_string_append(str, "(pass), ");
 		if (rec->autoconnect)
 			g_string_append(str, "autoconnect, ");
-		if (rec->no_proxy)
-			g_string_append(str, "noproxy, ");
 		if (rec->use_ssl) {
 			g_string_append(str, "ssl, ");
 			if (rec->ssl_cert) {
