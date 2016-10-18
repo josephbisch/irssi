@@ -18,6 +18,8 @@ char *ssl_cafile;
 char *ssl_capath;
 char *ssl_ciphers;
 
+char *proxy;
+
 char *own_host; /* address to use when connecting this server */
 IPADDR *own_ip4, *own_ip6; /* resolved own_address if not NULL */
 

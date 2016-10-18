@@ -194,6 +194,8 @@ server_connect_copy_skeleton(SERVER_CONNECT_REC *src, int connect_info)
 	dest->ssl_capath = g_strdup(src->ssl_capath);
 	dest->ssl_ciphers = g_strdup(src->ssl_ciphers);
 
+	dest->proxy = g_strdup(src->proxy);
+
 	return dest;
 }
 

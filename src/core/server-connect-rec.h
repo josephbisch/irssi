@@ -25,6 +25,8 @@ char *ssl_cafile;
 char *ssl_capath;
 char *ssl_ciphers;
 
+char *proxy;
+
 GIOChannel *connect_handle; /* connect using this handle */
 
 /* when reconnecting, the old server status */

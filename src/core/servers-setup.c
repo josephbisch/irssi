@@ -26,6 +26,7 @@
 
 #include "chat-protocols.h"
 #include "chatnets.h"
+#include "proxy.h"
 #include "servers.h"
 #include "servers-setup.h"
 
@@ -169,6 +170,8 @@ static void server_setup_fill_server(SERVER_CONNECT_REC *conn,
 		conn->ssl_capath = g_strdup(sserver->ssl_capath);
 	if (conn->ssl_ciphers == NULL && sserver->ssl_ciphers != NULL && sserver->ssl_ciphers[0] != '\0')
 		conn->ssl_ciphers = g_strdup(sserver->ssl_ciphers);
+	if (conn->proxy == NULL && sserver->proxy != NULL && sserver->proxy[0] != '\0')
+		conn->proxy = g_strdup(sserver->proxy);
 
 	server_setup_fill_reconn(conn, sserver);
 
@@ -403,6 +406,7 @@ static SERVER_SETUP_REC *server_setup_read(CONFIG_NODE *node)
 	rec->port = port;
 	rec->autoconnect = config_node_get_bool(node, "autoconnect", FALSE);
 	rec->own_host = g_strdup(config_node_get_str(node, "own_host", NULL));
+	rec->proxy = g_strdup(config_node_get_str(node, "proxy", NULL));
 
 	signal_emit("server setup read", 2, rec, node);
 
@@ -458,6 +462,7 @@ static void server_setup_save(SERVER_SETUP_REC *rec)
 	iconfig_node_set_str(node, "ssl_cafile", rec->ssl_cafile);
 	iconfig_node_set_str(node, "ssl_capath", rec->ssl_capath);
 	iconfig_node_set_str(node, "ssl_ciphers", rec->ssl_ciphers);
+	iconfig_node_set_str(node, "proxy", rec->proxy);
 	iconfig_node_set_str(node, "own_host", rec->own_host);
 
 	iconfig_node_set_str(node, "family",
@@ -505,6 +510,7 @@ static void server_setup_destroy(SERVER_SETUP_REC *rec)
 	g_free_not_null(rec->ssl_cafile);
 	g_free_not_null(rec->ssl_capath);
 	g_free_not_null(rec->ssl_ciphers);
+	g_free_not_null(rec->proxy);
 	g_free(rec->address);
 	g_free(rec);
 }
