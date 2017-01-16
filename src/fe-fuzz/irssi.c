@@ -34,6 +34,10 @@
 #include <string.h>
 
 int LLVMFuzzerInitialize(int *argc, char ***argv) {
+	/* avoid too many/frequent printfs from freezing up my terminal */
+	fclose(stdout);
+	stdout = fopen("/dev/null", "w");
+
 	core_register_options();
 	fe_common_core_register_options();
 	/* no args */
