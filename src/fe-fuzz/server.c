@@ -40,8 +40,6 @@
 #include "irc-servers.h"
 #include "irc-channels.h"
 
-#include "../irc/flood/flood.h"
-
 /* irc.c */
 void irc_init(void);
 void irc_deinit(void);
@@ -53,9 +51,6 @@ void irc_session_deinit(void);
 /* fe-common-irc.c */
 void fe_common_irc_init(void);
 void fe_common_irc_deinit(void);
-
-/* flood.c */
-void irc_flood_deinit(void);
 
 SERVER_REC *server;
 
@@ -135,7 +130,6 @@ void test_server() {
 	irc_irc_init();
 	irc_session_init();
 	/* irc_servers_init(); */
-	irc_flood_deinit();
 }
 
 int LLVMFuzzerInitialize(int *argc, char ***argv) {
