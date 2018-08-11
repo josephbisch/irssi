@@ -28,6 +28,7 @@ server_fuzz_DEPENDENCIES = @COMMON_LIBS@
 server_fuzz_LDADD = \
 	@COMMON_LIBS@ \
 	@PROG_LIBS@ \
+	@TEXTUI_LIBS@ \
 	$(FUZZER_LIBS)
 
 server_fuzz_SOURCES = \
