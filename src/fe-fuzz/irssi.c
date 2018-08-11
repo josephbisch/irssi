@@ -20,6 +20,7 @@
 
 #include "module.h"
 #include "modules-load.h"
+#include "module-formats.h"
 #include "levels.h"
 #include "themes.h"
 #include "core.h"
