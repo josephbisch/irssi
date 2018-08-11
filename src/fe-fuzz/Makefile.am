@@ -20,8 +20,7 @@ irssi_fuzz_LDADD = \
 	$(FUZZER_LIBS)
 
 irssi_fuzz_SOURCES = \
-        irssi.c \
-	$(top_srcdir)/src/fe-text/module-formats.c
+        irssi.c
 
 server_fuzz_DEPENDENCIES = @COMMON_LIBS@
 
@@ -31,8 +30,7 @@ server_fuzz_LDADD = \
 	$(FUZZER_LIBS)
 
 server_fuzz_SOURCES = \
-	server.c \
-	$(top_srcdir)/src/fe-text/modules-formats.c
+	server.c
 
 noinst_HEADERS = \
 	$(top_srcdir)/src/fe-text/module-formats.h
