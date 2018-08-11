@@ -21,7 +21,6 @@
 #include "module.h"
 #include "modules-load.h"
 #include "levels.h"
-#include "../fe-text/module-formats.h" /* need to explicitly grab from fe-text */
 #include "themes.h"
 #include "core.h"
 #include "fe-common-core.h"
@@ -41,7 +40,6 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 	core_preinit((*argv)[0]);
 	core_init();
 	fe_common_core_init();
-	theme_register(gui_text_formats);
 	module_register("core", "fe-fuzz");
 	printtext_string(NULL, NULL, MSGLEVEL_CLIENTCRAP, "init");
 	return 0;
