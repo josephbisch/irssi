@@ -17,22 +17,22 @@ irssi_fuzz_DEPENDENCIES = @COMMON_LIBS@
 irssi_fuzz_LDADD = \
 	@COMMON_LIBS@ \
 	@PROG_LIBS@ \
-	$(FUZZER_LIBS) \
-	module-formats.o
+	$(FUZZER_LIBS)
 
 irssi_fuzz_SOURCES = \
-        irssi.c
+        irssi.c \
+	$(top_srcdir)/src/fe-text/module-formats.c
 
 server_fuzz_DEPENDENCIES = @COMMON_LIBS@
 
 server_fuzz_LDADD = \
 	@COMMON_LIBS@ \
 	@PROG_LIBS@ \
-	$(FUZZER_LIBS) \
-	module-formats.o
+	$(FUZZER_LIBS)
 
 server_fuzz_SOURCES = \
-	server.c
+	server.c \
+	$(top_srcdir)/src/fe-text/modules-formats.c
 
 noinst_HEADERS = \
 	$(top_srcdir)/src/fe-text/module-formats.h
