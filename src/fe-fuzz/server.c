@@ -54,8 +54,8 @@ void fe_common_irc_init(void);
 void fe_common_irc_deinit(void);
 
 /* irc-cap.c */
-//void cap_init(void);
-//void cap_deinit(void);
+void cap_init(void);
+void cap_deinit(void);
 
 SERVER_REC *server;
 
