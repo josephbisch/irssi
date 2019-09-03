@@ -128,7 +128,7 @@ void test_server() {
 
 	/* we skip some initialisations that would try to send data */
 	/* irc_servers_deinit(); */
-	irc_core_deinit();
+	//irc_core_deinit();
 	irc_session_deinit();
 	irc_irc_deinit();
 
@@ -139,7 +139,7 @@ void test_server() {
 
 	irc_irc_init();
 	irc_session_init();
-	irc_core_init();
+	//irc_core_init();
 	/* irc_servers_init(); */
 
 	server_connect_unref(conn);
@@ -153,6 +153,7 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 	core_preinit((*argv)[0]);
 	core_init();
 	irc_init();
+	irc_core_init();
 	fe_common_core_init();
 	fe_common_irc_init();
 	signal_add("event 001", (SIGNAL_FUNC) event_connected);
