@@ -52,6 +52,10 @@ void irc_session_deinit(void);
 void fe_common_irc_init(void);
 void fe_common_irc_deinit(void);
 
+/* irc-cap.c */
+void cap_init(void);
+void cap_deinit(void);
+
 SERVER_REC *server;
 
 void event_connected(IRC_SERVER_REC *server, const char *data, const char *from)
@@ -120,6 +124,7 @@ void test_server() {
 
 	/* we skip some initialisations that would try to send data */
 	/* irc_servers_deinit(); */
+	cap_deinit();
 	irc_session_deinit();
 	irc_irc_deinit();
 
@@ -130,6 +135,7 @@ void test_server() {
 
 	irc_irc_init();
 	irc_session_init();
+	cap_init();
 	/* irc_servers_init(); */
 
 	server_connect_unref(conn);
