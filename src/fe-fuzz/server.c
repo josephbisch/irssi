@@ -62,6 +62,16 @@ void irc_core_deinit(void);
 
 SERVER_REC *server;
 
+#ifdef FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION
+static void null_logger(const gchar *log_domain,
+			GLogLevelFlags log_level,
+			const gchar *message,
+			gpointer user_data)
+{
+	return;
+}
+#endif
+
 void event_connected(IRC_SERVER_REC *server, const char *data, const char *from)
 {
 	char *params, *nick;
@@ -146,6 +156,9 @@ void test_server() {
 }
 
 int LLVMFuzzerInitialize(int *argc, char ***argv) {
+#ifdef FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION
+	g_log_set_default_handler(null_logger, NULL);
+#endif
 	core_register_options();
 	fe_common_core_register_options();
 	/* no args */
