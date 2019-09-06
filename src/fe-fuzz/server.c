@@ -167,7 +167,7 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 	core_preinit((*argv)[0]);
 	core_init();
 	irc_init();
-	//irc_core_init();
+	irc_core_init();
 	//irc_channels_init();
 	fe_common_core_init();
 	fe_common_irc_init();
@@ -186,7 +186,6 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 
 	test_server();
 
-	irc_core_init();
 
 	copy = g_strndup((const gchar *)data+1, size-1);
 	lines = g_strsplit(copy, "\r\n", -1);
@@ -203,7 +202,6 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 		g_free(prefixedLine);
 	}
 
-	irc_core_deinit();
 	g_strfreev(head);
 	g_free(copy);
 	server_disconnect(server);

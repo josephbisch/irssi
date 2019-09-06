@@ -109,7 +109,7 @@ void irc_core_init(void)
 	chat_protocol_register(rec);
         g_free(rec);
 
-        irc_session_init();
+        //irc_session_init();
 	irc_chatnets_init();
 	irc_servers_init();
 	irc_channels_init();
@@ -117,7 +117,7 @@ void irc_core_init(void)
 
 	ctcp_init();
 	irc_commands_init();
-	irc_irc_init();
+	//irc_irc_init();
 	lag_init();
 	netsplit_init();
 	irc_expandos_init();
