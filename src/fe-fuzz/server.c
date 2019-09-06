@@ -188,7 +188,8 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 
 
 	copy = g_strndup((const gchar *)data+1, size-1);
-	lines = g_strsplit(copy, "\r\n", -1);
+	//lines = g_strsplit(copy, "\r\n", -1);
+	lines = g_strsplit(copy, "\n", -1);
 	head = lines;
 
 	for (; *lines != NULL; lines++) {
