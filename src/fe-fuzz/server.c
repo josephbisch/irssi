@@ -167,8 +167,8 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 	core_preinit((*argv)[0]);
 	core_init();
 	irc_init();
-	//irc_core_init();
-	irc_channels_init();
+	irc_core_init();
+	//irc_channels_init();
 	fe_common_core_init();
 	fe_common_irc_init();
 	signal_add("event 001", (SIGNAL_FUNC) event_connected);
