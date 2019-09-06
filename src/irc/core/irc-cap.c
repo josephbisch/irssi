@@ -131,8 +131,8 @@ static void event_cap (IRC_SERVER_REC *server, char *args, char *nick, char *add
 	/* Malformed request, terminate the negotiation */
 	else {
 		irc_cap_finish_negotiation(server);
-		g_free(params);
-		char volatile a = *params;
+		//g_free(params);
+		//char volatile a = *params;
 		g_warn_if_reached();
 		return;
 	}
