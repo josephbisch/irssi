@@ -157,9 +157,9 @@ void test_server() {
 }
 
 int LLVMFuzzerInitialize(int *argc, char ***argv) {
-#ifdef FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION
-	g_log_set_default_handler(null_logger, NULL);
-#endif
+//#ifdef FUZZING_BUILD_MODE_UNSAFE_FOR_PRODUCTION
+//	g_log_set_default_handler(null_logger, NULL);
+//#endif
 	core_register_options();
 	fe_common_core_register_options();
 	/* no args */

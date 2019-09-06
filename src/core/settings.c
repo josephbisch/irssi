@@ -255,6 +255,7 @@ void settings_add_str_module(const char *module, const char *section,
 	memset(&default_value, 0, sizeof(default_value));
 	default_value.v_string = g_strdup(def);
 	settings_add(module, section, key, SETTING_TYPE_STRING, &default_value, NULL);
+	g_free(default_value.v_string);
 }
 
 void settings_add_choice_module(const char *module, const char *section,
