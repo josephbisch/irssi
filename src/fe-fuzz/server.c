@@ -178,28 +178,35 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 
 int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 	gboolean prefixedChoice = (gboolean)*data;
+	gboolean inputChoice = (gboolean)*(data+1);
 	gchar *copy;
 	gchar **lines;
 	gchar **head;
 
-	if (size < 1) return 0;
+	if (size < 2) return 0;
 
 	test_server();
 
 
-	copy = g_strndup((const gchar *)data+1, size-1);
+	copy = g_strndup((const gchar *)data+2, size-2);
 	//lines = g_strsplit(copy, "\r\n", -1);
 	lines = g_strsplit(copy, "\n", -1);
 	head = lines;
 
 	for (; *lines != NULL; lines++) {
 		gchar *prefixedLine;
-		if (prefixedChoice) {
+		if (!inputChoice && prefixedChoice) {
 			prefixedLine = g_strdup_printf(":user %s\n", *lines);
+		} else if (inputChoice) {
+			prefixedLine = g_strdup_printf("/%s\n", *lines);
 		} else {
 			prefixedLine = g_strdup_printf("%s\n", *lines);
 		}
-		signal_emit("server incoming", 2, server, prefixedLine);
+		if (!inputChoice) {
+			signal_emit("server incoming", 2, server, prefixedLine);
+		} else {
+			signal_emit("send command", 3, prefixedLine, server, NULL);
+		}
 		g_free(prefixedLine);
 	}
 
