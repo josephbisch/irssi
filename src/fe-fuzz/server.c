@@ -177,6 +177,7 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 }
 
 int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
+	if (size < 2) return 0;
 	gboolean prefixedChoice = (gboolean)*data;
 	gboolean inputChoice = (gboolean)*(data+1);
 	gchar *copy;
