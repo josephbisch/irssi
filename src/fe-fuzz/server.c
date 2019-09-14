@@ -41,6 +41,7 @@
 #include <irssi/src/irc/core/irc-channels.h>
 #include <irssi/src/irc/core/irc-cap.h>
 #include <irssi/src/irc/core/irc-channels.h>
+#include <irssi/src/fe-common/core/fe-windows.h>
 
 /* irc.c */
 void irc_init(void);
@@ -173,6 +174,7 @@ int LLVMFuzzerInitialize(int *argc, char ***argv) {
 	fe_common_irc_init();
 	signal_add("event 001", (SIGNAL_FUNC) event_connected);
 	module_register("core", "fe-fuzz");
+	window_create(NULL, 1);
 	return 0;
 }
 
