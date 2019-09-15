@@ -196,6 +196,8 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 	lines = g_strsplit(copy, "\n", -1);
 	head = lines;
 
+	signal_emit("send command", 3, "/set autofocus_new_items ON\n", server, NULL);
+
 	for (; *lines != NULL; lines++) {
 		gchar *prefixedLine;
 		if (/*!inputChoice && */prefixedChoice) {
