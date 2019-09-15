@@ -198,14 +198,14 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 
 	for (; *lines != NULL; lines++) {
 		gchar *prefixedLine;
-		if (!inputChoice && prefixedChoice) {
+		if (/*!inputChoice && */prefixedChoice) {
 			prefixedLine = g_strdup_printf(":user %s\n", *lines);
-		} else if (inputChoice) {
+		} else if (0) {//inputChoice) {
 			prefixedLine = g_strdup_printf("/%s\n", *lines);
 		} else {
 			prefixedLine = g_strdup_printf("%s\n", *lines);
 		}
-		if (!inputChoice) {
+		if (1/*!inputChoice*/) {
 			signal_emit("server incoming", 2, server, prefixedLine);
 		} else {
 			signal_emit("send command", 3, prefixedLine, server, NULL);
