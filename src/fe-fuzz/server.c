@@ -218,6 +218,6 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 	g_strfreev(head);
 	g_free(copy);
 	server_disconnect(server);
-	signal_emit("event disconnected", 1, server);
+	//signal_emit("event disconnected", 1, server);
 	return 0;
 }
