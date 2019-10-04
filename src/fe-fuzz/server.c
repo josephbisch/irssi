@@ -144,6 +144,8 @@ void test_server() {
 	irc_session_deinit();
 	irc_irc_deinit();
 
+	server->connect_tag = -1;
+
 	server_connect_finished(server);
 
 	/* make up for the skipped session init */
@@ -218,6 +220,6 @@ int LLVMFuzzerTestOneInput(const uint8_t* data, size_t size) {
 	g_strfreev(head);
 	g_free(copy);
 	server_disconnect(server);
-	signal_emit("server disconnected", 1, server);
+	//signal_emit("server disconnected", 1, server);
 	return 0;
 }
