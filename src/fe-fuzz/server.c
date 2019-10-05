@@ -154,7 +154,7 @@ void test_server() {
 	irc_irc_init();
 	irc_session_init();
 	//irc_core_init();
-	/* irc_servers_init(); */
+	irc_servers_init();
 
 	server_connect_unref(conn);
 }
